@@ -1,7 +1,8 @@
-| Test Case | Requirement Tested |
+| Test Case | Requirement Tested | Did it work?
 | ----------- | ---------------------------------------- |
-| `1`| List all *new or modified* files |
-| `2` | Show file differences not yet staged |
-| `3`| List all *new or modified* files |
-| `4`| List all *new or modified* files |
-| `5`| List all *new or modified* files |
+| `1`| 72F |
+| `2` | 79F |
+| `3`| 65F |
+| `4`| 68F | 
+| `5`| 70F - 74F Changed, 75 |
+| `5`| 70F - 74F Changed, 75 |
