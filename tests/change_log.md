@@ -16,11 +16,11 @@ Changelog
 - Added input checks when changing the temperature range
 
 === 11/13/2026 ===
-Added
+
 - Design documentation for the temperature monitor (`docs/`)
 
 === 11/06/2026
-Added
+
 - Initial project structure (`data/`, `docs/`, `src/`, `tests/`)
 - README
 - LED test program (`led.c`)
