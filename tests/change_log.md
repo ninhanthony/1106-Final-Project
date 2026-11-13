@@ -1,8 +1,8 @@
 Changelog 
 
 === Added ===
-- Temperature monitoring and logging program (`src/temp_monitor.c`)
-- NORMAL / WARNING status check for the 68°F to 76°F range (inclusive)
+1. Temperature monitoring and logging program (`src/temp_monitor.c`)
+2. NORMAL / WARNING status check for the 68°F to 76°F range (inclusive)
 - Running average of recorded temperatures
 - Warning LED on GPIO 17
 - Saving of readings and statuses to `data/temperature_log.csv` and `data/status.txt`
