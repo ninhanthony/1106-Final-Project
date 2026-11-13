@@ -2,7 +2,7 @@
 
 All notable changes to the Smart Classroom Comfort Monitor are listed here, newest first.
 
-## [1.0.0] - 2026-11-13
+
 ### Added
 - Temperature monitoring and logging program (`src/temp_monitor.c`)
 - NORMAL / WARNING status check for the 68°F to 76°F range (inclusive)
