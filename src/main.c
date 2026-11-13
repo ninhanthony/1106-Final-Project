@@ -50,32 +50,35 @@ printf("Enter temperature in Fahrenheit: ");
   temp_sum += temp;
   temp_count++;
   float avg = temp_sum / temp_count;
+  
   const char status;
   const char led_state;
+  
   if (temp >= min_temp && temp <= max_temp) {
-  status = "NORMAL";
-  led_state = "OFF";
-  gpioWrite(PIN, 0); 
+    status = "NORMAL";
+    led_state = "OFF";
+    gpioWrite(PIN, 0); 
   } else {
-  status = "WARNING";
-  led_state = "ON";
-  gpioWrite(PIN, 1); 
+    status = "WARNING";
+    led_state = "ON";
+    gpioWrite(PIN, 1); 
   }
-  printf("Temperature: %.1f F | System Status: %s | Warning LED: %s",temp, status, led_state);
-  printf("Average of recorded temperatures (%d readings): %.2f F",temp_count, avg);
+  printf("Temperature: %.1f F | System Status: %s | Warning LED: %s",
+    temp, status, led_state);
+  printf("Average of recorded temperatures (%d readings): %.2f F",
+    temp_count, avg);
   
   FILE log_file = fopen("data/temperature_log.csv", "a");
-    if (log_file != NULL) {fprintf(log_file, "%.1f,%s,%s,%.2f
-  ", temp, status, led_state, avg);
-  fclose(log_file);
+    if (log_file != NULL) {
+      fprintf(log_file, "%.1f,%s,%s,%.2f", 
+        temp, status, led_state, avg);
+      fclose(log_file);
   }
   
   FILE status_file = fopen("data/status.txt", "w");
   if (status_file != NULL) {
-  fprintf(status_file, "%s", status);
-  fclose(status_file);
-    
-  }
+    fprintf(status_file, "%s", status);
+    fclose(status_file);
   } else if (choice == 2) {
   float new_min, new_max;
   printf("Enter new minimum acceptable temperature (F): ");
@@ -83,8 +86,8 @@ printf("Enter temperature in Fahrenheit: ");
   printf("Enter new maximum acceptable temperature (F): ");
   scanf("%f", &new_max);
   if (new_min < new_max) {
-  min_temp = new_min;
-  max_temp = new_max;
+    min_temp = new_min;
+    max_temp = new_max;
   printf("Acceptable range updated to %.1f F - %.1f F.", min_temp, max_temp);
   } else {
   printf("Error: Minimum must be less than maximum.");
