@@ -1,4 +1,7 @@
 | Test Case | Requirement Tested |
 | ----------- | ---------------------------------------- |
-| `git status`| List all *new or modified* files |
-| `git diff` | Show file differences not yet staged |
+| `1`| List all *new or modified* files |
+| `2` | Show file differences not yet staged |
+| `3`| List all *new or modified* files |
+| `4`| List all *new or modified* files |
+| `5`| List all *new or modified* files |
