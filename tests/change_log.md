@@ -2,9 +2,6 @@
 
 All notable changes to the Smart Classroom Comfort Monitor are listed here, newest first.
 
-## [Unreleased]
-- (Add any change you make from now on here)
-
 ## [1.0.0] - 2026-11-13
 ### Added
 - Temperature monitoring and logging program (`src/temp_monitor.c`)
