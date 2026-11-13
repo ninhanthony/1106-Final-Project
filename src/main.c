@@ -1,58 +1,53 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pigpio.h>
+
 #define PIN 17
+
   int main(int argc, char* argv[]) {
-  if (gpioInitialise() < 0) {
-  printf("Failed to initialize pigpio. Run with sudo!");
-  return 1;
-}
-gpioSetMode(PIN, PI_OUTPUT);
-gpioWrite(PIN, 0); // Start with LED OFF
-float min_temp = 68.0f;
-float max_temp = 76.0f;
-float temp_sum = 0.0f;
+    if (gpioInitialise() < 0) {
+      printf("Failed to initialize pigpio. Run with sudo!");
+    return 1;
+  }
+  gpioSetMode(PIN, PI_OUTPUT);
+  gpioWrite(PIN, 0);
+    
+  float min_temp = 68.0f;
+  float max_temp = 76.0f;
+  float temp_sum = 0.0f;
   int temp_count = 0;
   int choice = 0;
-// Initialize CSV file with header if needed
-FILE csv_init = fopen("data/temperature_log.csv", "a");
-if (csv_init != NULL) {
-fseek(csv_init, 0, SEEK_END);
-if (ftell(csv_init) == 0) {
-fprintf(csv_init, "Temperature_F,Status,LED,Average_F
-");
-}
-fclose(csv_init);
-}
-while (1) {
-printf("
-=== Smart Classroom Comfort Monitor ===
-");
-printf("Current Acceptable Range: %.1f F - %.1f F
-", min_temp, max_temp);
-printf("1. Enter classroom temperature reading (F)
-");
-printf("2. Change acceptable temperature range
-");
-printf("3. Exit
-");
-printf("Select an option: ");
-if (scanf("%d", &choice) != 1) {
-while (getchar() != '
-'); // Clear invalid input
-printf("Invalid input. Please enter a number.
-");
-continue;
+
+  FILE csv_init = fopen("data/temperature_log.csv", "a");
+  if (csv_init != NULL) {
+      fseek(csv_init, 0, SEEK_END);
+  if (ftell(csv_init) == 0) {
+  fprintf(csv_init, "Temperature_F,Status,LED,Average_F");
+  }
+  fclose(csv_init);
+  }
+  while (1) {
+    printf("=== Smart Classroom Comfort Monitor === ");
+    printf("Current Acceptable Range: %.1f F - %.1f F", min_temp, max_temp);
+    printf("1. Enter classroom temperature reading (F)");
+    printf("2. Change acceptable temperature range");
+    printf("3. Exit");
+    printf("Select an option: ");
+
+  if (scanf("%d", &choice) != 1) {
+  while (getchar() != '
+  '); // Clear invalid input
+  printf("Invalid input. Please enter a number.
+  ");
+  continue;
 }
 if (choice == 1) {
 float temp;
 printf("Enter temperature in Fahrenheit: ");
-if (scanf("%f", &temp) != 1) {
-while (getchar() != '
-');
-printf("Invalid temperature input.
-");
-continue;
+  if (scanf("%f", &temp) != 1) {
+  while (getchar() != '');
+  printf("Invalid temperature input.");
+  continue;
 }
 temp_sum += temp;
 temp_count++;
@@ -62,11 +57,11 @@ const char led_state;
 if (temp >= min_temp && temp <= max_temp) {
 status = "NORMAL";
 led_state = "OFF";
-gpioWrite(PIN, 0); // LED OFF
+gpioWrite(PIN, 0); 
 } else {
 status = "WARNING";
 led_state = "ON";
-gpioWrite(PIN, 1); // LED ON
+gpioWrite(PIN, 1); 
 }
 printf("
 Temperature: %.1f F | System Status: %s | Warning LED: %s
@@ -75,14 +70,14 @@ temp, status, led_state);
 printf("Average of recorded temperatures (%d readings): %.2f F
 ",
 temp_count, avg);
-// Append reading and status to CSV log
+
 FILE log_file = fopen("data/temperature_log.csv", "a");
 if (log_file != NULL) {
 fprintf(log_file, "%.1f,%s,%s,%.2f
 ", temp, status, led_state, avg);
 fclose(log_file);
 }
-// Update latest status file
+
 FILE status_file = fopen("data/status.txt", "w");
 if (status_file != NULL) {
 fprintf(status_file, "%s
@@ -105,7 +100,7 @@ printf("Error: Minimum must be less than maximum.
 ");
 }
 } else if (choice == 3) {
-gpioWrite(PIN, 0); // Turn off LED before exiting
+gpioWrite(PIN, 0);
 gpioTerminate();
 printf("Exiting program. Goodbye!
 ");
