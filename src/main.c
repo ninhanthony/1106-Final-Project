@@ -14,7 +14,6 @@ int main(int argc, char* argv[]) {
     gpioSetMode(PIN, PI_OUTPUT);
     gpioWrite(PIN, 0); 
 
-
     mkdir("data", 0755);
 
     float min_temp = 68.0f;
@@ -23,7 +22,6 @@ int main(int argc, char* argv[]) {
     int temp_count = 0;
     int choice = 0;
 
-    
     FILE *csv_init = fopen("data/temperature_log.csv", "a");
     if (csv_init != NULL) {
         fseek(csv_init, 0, SEEK_END);
