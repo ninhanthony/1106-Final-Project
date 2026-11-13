@@ -1,8 +1,8 @@
-Changelog 
+# Changelog 
 
 === Added ===
 - Temperature monitoring and logging program 
-- NORMAL / WARNING status check for the 68°F to 76°F range (inclusive)
+- NORMAL / WARNING status check for the 68°F to 76°F range
 - Running average of recorded temperatures
 - Warning LED on GPIO 17
 - Menu option to change the acceptable temperature range
@@ -10,7 +10,6 @@ Changelog
 
 === Fixed ===
 - Corrected file pointer and string declarations that stopped the program from compiling
-- Fixed broken newline characters in the code
 - Program now creates the data/ folder itself if it is missing
 - Added input checks when changing the temperature range
 
