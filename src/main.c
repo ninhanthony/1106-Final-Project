@@ -12,9 +12,9 @@ int main(int argc, char* argv[]) {
     }
 
     gpioSetMode(PIN, PI_OUTPUT);
-    gpioWrite(PIN, 0); // Start with LED OFF
+    gpioWrite(PIN, 0); 
 
-    // Make sure the data folder exists (does nothing if it already does)
+
     mkdir("data", 0755);
 
     float min_temp = 68.0f;
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
     int temp_count = 0;
     int choice = 0;
 
-    // Initialize CSV file with header if needed
+    
     FILE *csv_init = fopen("data/temperature_log.csv", "a");
     if (csv_init != NULL) {
         fseek(csv_init, 0, SEEK_END);
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
         printf("Select an option: ");
 
         if (scanf("%d", &choice) != 1) {
-            while (getchar() != '\n'); // Clear invalid input
+            while (getchar() != '\n'); 
             printf("Invalid input. Please enter a number.\n");
             continue;
         }
@@ -68,11 +68,11 @@ int main(int argc, char* argv[]) {
             if (temp >= min_temp && temp <= max_temp) {
                 status = "NORMAL";
                 led_state = "OFF";
-                gpioWrite(PIN, 0); // LED OFF
+                gpioWrite(PIN, 0);
             } else {
                 status = "WARNING";
                 led_state = "ON";
-                gpioWrite(PIN, 1); // LED ON
+                gpioWrite(PIN, 1); 
             }
 
             printf("\nTemperature: %.1f F | System Status: %s | Warning LED: %s\n",
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
             printf("Average of recorded temperatures (%d readings): %.2f F\n",
                    temp_count, avg);
 
-            // Append reading and status to CSV log
+            
             FILE *log_file = fopen("data/temperature_log.csv", "a");
             if (log_file != NULL) {
                 fprintf(log_file, "%.1f,%s,%s,%.2f\n", temp, status, led_state, avg);
@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
                 printf("Warning: could not save reading to file.\n");
             }
 
-            // Update latest status file
+            
             FILE *status_file = fopen("data/status.txt", "w");
             if (status_file != NULL) {
                 fprintf(status_file, "%s\n", status);
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
             }
 
         } else if (choice == 3) {
-            gpioWrite(PIN, 0); // Turn off LED before exiting
+            gpioWrite(PIN, 0); 
             gpioTerminate();
             printf("Exiting program. Goodbye!\n");
             break;
