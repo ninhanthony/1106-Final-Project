@@ -96,18 +96,15 @@ max_temp = new_max;
 printf("Acceptable range updated to %.1f F - %.1f F.
 ", min_temp, max_temp);
 } else {
-printf("Error: Minimum must be less than maximum.
-");
+printf("Error: Minimum must be less than maximum.");
 }
 } else if (choice == 3) {
 gpioWrite(PIN, 0);
 gpioTerminate();
-printf("Exiting program. Goodbye!
-");
+printf("Exiting program. Goodbye!");
 break;
 } else {
-printf("Invalid menu option. Choose 1, 2, or 3.
-");
+printf("Invalid menu option. Choose 1, 2, or 3.");
 }
 }
 return 0;
